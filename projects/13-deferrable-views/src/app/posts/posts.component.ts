@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Component, OnInit } from '@angular/core';
 import { Post } from '../data';
 
 @Component({
@@ -41,8 +41,10 @@ export class PostsComponent implements OnInit {
   protected postData: Post[] = [];
 
   ngOnInit() {
-    fetch('https://jsonplaceholder.typicode.com/posts')
-      .then((response) => response.json())
-      .then((data) => (this.postData = data));
+    setTimeout(() => {
+      fetch('https://jsonplaceholder.typicode.com/posts')
+        .then((response) => response.json())
+        .then((data) => (this.postData = data));
+    }, 2000);
   }
 }

@@ -1,25 +1,34 @@
 import { Component } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
   standalone: true,
+  imports: [FormsModule],
   template: `
     <article>
       <h1>Blog Post</h1>
       <section>
         <label for="title">Post Title</label>
-        <!-- add the input -->
+        <input id="title" name="title" type="text" [(ngModel)]="title" />
 
         <label for="body">Post Body</label>
-        <!-- add the textarea -->
+        <textarea
+          id="body"
+          name="body"
+          rows="4"
+          cols="50"
+          [(ngModel)]="body"
+        ></textarea>
       </section>
-      <!-- <section>
-        <p>Display title</p>
-        <p>Display value</p>
-      </section> -->
+      <section>
+        <p>Display {{ title }}</p>
+        <p>Display {{ body }}</p>
+      </section>
     </article>
   `,
 })
 export class AppComponent {
-  title = '09-template-driven-forms';
+  title = '';
+  body = '';
 }

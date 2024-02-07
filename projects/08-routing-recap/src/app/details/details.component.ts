@@ -1,22 +1,33 @@
-import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Component, Input } from '@angular/core';
+import { Product } from './details';
 
 @Component({
   selector: 'app-details',
   standalone: true,
   imports: [CommonModule],
   template: `
+    @if(product) {
     <section>
-      <p>Title</p>
+      <p>{{ product.title }}</p>
       <ul>
-        <li>Price</li>
-        <li>Description</li>
+        <li>{{ product.price }}</li>
+        <li>{{ product.description }}</li>
       </ul>
     </section>
+    } @else {
+    <p>Product not found</p>
+    }
   `,
   styles: ``,
 })
 export class DetailsComponent {
+  product: Product | undefined;
+
+  @Input() set id(value: number) {
+    this.product = this.productList[value];
+  }
+
   productList = [
     {
       title: 'Product 1',
